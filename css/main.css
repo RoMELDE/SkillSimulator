@@ -1,0 +1,86 @@
+html{
+    height: 100%;
+}
+
+body {
+    padding-top: 60px;
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    height: 100%;
+}
+
+.panel-heading {
+    cursor: pointer;
+}
+
+#main{
+    overflow-x :auto;
+    height: 100%;
+    padding: 20px 0;
+}
+#main table{
+    height: 100%;
+}
+#main td{
+    min-width: 60px;
+}
+#main td:nth-of-type(12){
+    border-right: 1px solid #777;
+}
+#main td:nth-of-type(24){
+    border-right: 1px solid #777;
+}
+#main td .skillContainer{
+    width: 90px;
+    height: 90px;
+    position: relative;
+}
+#main td .skillName{
+    position: absolute;
+    background-color: rgba(192,192,192,0.6);
+    left: 0;
+    bottom: 0;
+}
+#main td .btn{
+    width:25px;
+}
+
+.notAvailable{
+    filter: grayscale(100%);
+}
+
+.top-background {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 125px;
+    background: linear-gradient(180deg, white, white 75px, transparent 100px, transparent);
+    z-index: 3;
+}
+
+.row-top-buffer {
+    margin-top: 20px;
+}
+
+.noUi-connect {
+    background: #337ab7;
+}
+
+.skill-desc{
+    position: absolute;
+    z-index: 100;
+    background-color: rgba(160,160,160,0.8);
+    width:300px;
+}
+.skill-desc .skill-desc-header{
+    border-bottom: 2px solid #ccc;
+}
+.skill-desc .skill-desc-detail{
+    float: left;
+    width: 50%;
+}
+.skill-desc .skill-desc-detail:only-of-type{    
+    width: 100%;
+}
+.skill-desc .skill-desc-detail:nth-of-type(2){    
+    border-left: 2px solid #ccc;
+}

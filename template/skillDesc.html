@@ -1,0 +1,30 @@
+<div class="skill-desc">
+    <div class="skill-desc-header clearfix">
+        <h4 class="pull-left">
+            <%= skillMould.Name %>
+        </h4>
+        <div class="pull-right" style="text-align:right">
+            <div>
+                Lv.
+                <%= lv %>
+            </div>
+            <!--<div>
+                <%= skillMould.Atktype===1?"主动技能":"被动技能" %>
+            </div>-->
+        </div>
+    </div>
+    <div>
+        <% if(skill){ %>
+            <div class="skill-desc-detail">
+                <p>当前等级</p>
+                <%= skill.Desc.Html %>
+            </div>
+            <% } %>
+                <% if(nextSkill){ %>
+                    <div class="skill-desc-detail">
+                        <p>下一等级</p>
+                        <%= nextSkill.Desc.Html %>
+                    </div>
+                    <% } %>
+    </div>
+</div>
