@@ -63,7 +63,8 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             var $td = $table.find('tr:eq(' + (o.Pos[1] - 1) + ') td:eq(' + (o.Pos[0] - 1) + ')');
             var $div = $('<div>')
                 .addClass('skillContainer').addClass('notAvailable')
-                .data('baseskill', skill).data('skillmould', o).data('lv', 0);
+                .data('baseskill', skill).data('skillmould', o).data('lv', 0)
+                .attr('skill-mould-id', o.Id);
             $td.append($div);
 
             $div.hover(function () { showSkillDesc.call($div); },
@@ -94,7 +95,10 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
         });
 
         $('#main').append($table);
-        refreshSkillButton();
+        refresh();
+        if (savedata) {
+            load(savedata);
+        }
 
         setTimeout(function () {
             //a little delay to unveil for better unveil effect
@@ -159,8 +163,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             if (nextSkill.Condition && nextSkill.Condition.Skillid) {
                 requireSkillIdList.push(nextSkill.Condition.Skillid);
             }
-            updateJobText();
-            refreshSkillButton();
+            refresh();
         }
     };
 
@@ -189,10 +192,9 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
         joblv--;
         joblvList[skill.Class] = (joblvList[skill.Class] || 0) - 1;
         if (skill.Condition && skill.Condition.Skillid) {
-            requireSkillIdList = _.without(requireSkillIdList, nextSkill.Condition.Skillid);
+            requireSkillIdList = _.without(requireSkillIdList, skill.Condition.Skillid);
         }
-        updateJobText();
-        refreshSkillButton();
+        refresh();
     };
 
     $.fn.visible = function () {
@@ -278,9 +280,40 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
         });
     };
 
-    var refreshSkillButton = function () {
+    var refresh = function () {
+        updateJobText();
+        save();
         refreshSkillAddButton();
         refreshSkillSubButton();
+    };
+
+    var save = function () {
+        var skillList = [];
+        $('.skillContainer').each(function (i, o) {
+            var baseSkill = $(o).data('baseskill');
+            var skillMould = $(o).data('skillmould');
+            var lv = $(o).data('lv');
+            if (lv > 0) {
+                skillList.push({ s: skillMould.Id, lv: lv });
+            }
+        });
+        var data = stringifyCondition(skillList);
+        Backbone.history.navigate("class/" + classId + "/share/" + data, { trigger: false });
+    };
+    var load = function (savedata) {
+        var skillList = parseCondition(savedata);
+        while (skillList.length) {
+            _.each(skillList, function (o, i) {
+                var $div = $('.skillContainer[skill-mould-id=' + o.s + ']');
+                var $tdnext = $div.parent().next();
+                if ($tdnext.find('.skill-add').isvisible()) {
+                    for (var i = 0; i < o.lv; i++) {
+                        $tdnext.find('.skill-add').click();
+                    }
+                    skillList = _.without(skillList, o);
+                }
+            });
+        }
     };
 
     function stringifyCondition(condition) {
