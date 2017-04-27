@@ -19,7 +19,7 @@ define(['jquery'], function () {
                 return dtd.promise();
             }
             else {
-                var url = '../data/' + key + '.json'
+                var url = 'data/' + key + '.json'
                 return $.ajax({
                     url: url,
                     cache: false,
@@ -42,7 +42,7 @@ define(['jquery'], function () {
             dtd.resolve(true);
             return dtd.promise();
         }
-        var url = '../data/lastUpdate.json'
+        var url = 'data/lastUpdate.json'
         return $.ajax({
             url: url,
             cache: false,
