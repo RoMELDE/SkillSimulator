@@ -37,6 +37,12 @@ require(['jquery', 'underscore', 'data', 'ui', 'view', 'router'], function ($, _
                         NProgress.inc();
                         Router.init();
                         NProgress.done();
+
+                        //彩蛋
+                        if (new Date() % 10 == 0) {
+                            console.log('???');
+                            $('[data-class-id=13]').text('狸猫');
+                        }
                     });
             });
     });
