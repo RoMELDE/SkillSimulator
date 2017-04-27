@@ -70,7 +70,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
                 function () { hideSkillDesc(skill.Id); });
 
             var $img = $('<img>');
-            $img.attr('src', '/img/Skill/' + skill.Icon + '.png');
+            $img.attr('src', 'img/Skill/' + skill.Icon + '.png');
             $div.append($img);
 
             var $name = $('<div>').addClass('skillName').text(o.Name);
