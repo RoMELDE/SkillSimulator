@@ -42,5 +42,6 @@ require(['jquery', 'underscore', 'data', 'ui', 'view', 'router'], function ($, _
     });
 }, function (err) {
     console.log("network error, will auto reload.");
+    debugger;
     location.reload();
 });
