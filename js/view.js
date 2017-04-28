@@ -33,6 +33,12 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
         });
         $('#jobText').text(text.substring(0, text.length - 1));
     };
+    var clear = function () {
+        joblv = 10;
+        joblvList = [];
+        skillIdList = [];
+        requireSkillIdList = [];
+    };
     var render = function (id, savedata) {
         var self = this;
         if (id == 0) {
@@ -43,6 +49,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
         //clear main
         $('#main').find("img").attr('src', ''); //stop image loading when doPage
         $('#main').empty();
+        clear();
         //get data
         var skillMoulds = Data.getSkillMouldByClassId(id);
 
