@@ -1,29 +1,65 @@
 <div class="skill-desc">
     <div class="skill-desc-header clearfix">
         <h4 class="pull-left">
-            <%= skillMould.Name %>
+            <%= baseSkill.NameZh %>
         </h4>
         <div class="pull-right" style="text-align:right">
             <div>
                 Lv.
                 <%= lv %>
             </div>
-            <!--<div>
-                <%= skillMould.Atktype===1?"主动技能":"被动技能" %>
-            </div>-->
+            <div>
+                <%= baseSkill.SkillType=="Attack"?"主动技能":"被动技能" %>
+            </div>
         </div>
     </div>
     <div>
         <% if(skill){ %>
             <div class="skill-desc-detail">
                 <p>当前等级</p>
-                <%= skill.Desc.Html %>
+                <p>
+                    <%= skill.Desc.Html %>
+                </p>
+                <div>
+                    施法距离：
+                    <%= skill.LaunchRange %>m
+                </div>
+                <div>
+                    技能冷却：
+                    <%= skill.CD %>秒
+                </div>
+                <div>
+                    技能延迟：
+                    <%= skill.DelayCD %>秒
+                </div>
+                <div>
+                    SP消耗：
+                    <%= skill.SkillCost %>
+                </div>
             </div>
             <% } %>
                 <% if(nextSkill){ %>
                     <div class="skill-desc-detail">
                         <p>下一等级</p>
-                        <%= nextSkill.Desc.Html %>
+                        <p>
+                            <%= nextSkill.Desc.Html %>
+                        </p>
+                        <div>
+                            施法距离：
+                            <%= nextSkill.LaunchRange %>m
+                        </div>
+                        <div>
+                            技能冷却：
+                            <%= nextSkill.CD %>秒
+                        </div>
+                        <div>
+                            技能延迟：
+                            <%= nextSkill.DelayCD %>秒
+                        </div>
+                        <div>
+                            SP消耗：
+                            <%= nextSkill.SkillCost %>
+                        </div>
                     </div>
                     <% } %>
     </div>

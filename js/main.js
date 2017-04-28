@@ -39,8 +39,7 @@ require(['jquery', 'underscore', 'data', 'ui', 'view', 'router'], function ($, _
                         NProgress.done();
 
                         //彩蛋
-                        if (new Date() % 10 == 0) {
-                            console.log('???');
+                        if (new Date() % 60 != 0) {
                             $('[data-class-id=13]').text('狸猫');
                         }
                     });

@@ -74,7 +74,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             $img.attr('src', 'img/Skill/' + skill.Icon + '.png');
             $div.append($img);
 
-            var $name = $('<div>').addClass('skillName').text(o.Name);
+            var $name = $('<div>').addClass('skillName').text(skill.NameZh);
             $div.append($name);
 
             var $tdnext = $td.next();
