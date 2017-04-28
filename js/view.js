@@ -38,6 +38,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
         joblvList = [];
         skillIdList = [];
         requireSkillIdList = [];
+        updateJobText();
     };
     var render = function (id, savedata) {
         var self = this;
