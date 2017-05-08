@@ -137,7 +137,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
 
     var showSkillDesc = function () {
         var $this = $(this);
-        var $td=$(this).parent();
+        var $td = $(this).parent();
         var skill = $(this).data('skill');
         var lv = $(this).data('lv');
         var baseSkill = $(this).data('baseskill');
@@ -161,11 +161,11 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
         var top = $this.position().top;
         var left = $td.position().left + $td.width();
 
-        if ($this.position().top  + $div.height() > $(window).height()) {
+        if ($this.position().top + $div.height() > $(window).height()) {
             top = $(window).height() - $div.height() - 10;
         }
         if ($td.position().left + $td.width() + $div.width() + 10 > $(window).width()) {
-            left = $td.position().left - $div.width()-10;
+            left = $td.position().left - $div.width() - 10;
         }
         $div.css({ top: top + 'px', left: left + 'px' }).show();
     };
