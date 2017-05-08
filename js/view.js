@@ -90,18 +90,18 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
 
             var $tdnext = $td.next();
             $tdnext
-                .append($("<div>").addClass('btn-container')
+                .append($("<div>").addClass('btn-container').addClass('btn-group')
                     .append($('<button class="btn btn-sm btn-success skill-add skill-add-1" type="button">').append("<span class='glyphicon glyphicon-plus'>").click(function () {
                         addSkill.call($div);
                     }))
-                    .append($('<button class="btn btn-sm btn-success skill-add skill-add-max" type="button">').append("<span class='glyphicon glyphicon-chevron-up'>").click(function () {
+                    .append($('<button class="btn btn-sm btn-success skill-add skill-add-max clearfix" type="button">').append("<span class='glyphicon glyphicon-chevron-up'>").click(function () {
                         maxSkill.call($div);
                     })))
-                .append($("<div>").addClass('btn-container')
+                .append($("<div>").addClass('btn-container').addClass('btn-group')
                     .append($('<button class="btn btn-sm btn-danger skill-sub skill-sub-1" type="button">').append("<span class='glyphicon glyphicon-minus'>").click(function () {
                         subSkill.call($div);
                     }))
-                    .append($('<button class="btn btn-sm btn-danger skill-sub skill-sub-clear" type="button">').append("<span class='glyphicon glyphicon-trash'>").click(function () {
+                    .append($('<button class="btn btn-sm btn-danger skill-sub skill-sub-clear clearfix" type="button">').append("<span class='glyphicon glyphicon-trash'>").click(function () {
                         clearSkill.call($div);
                     })));
         });
@@ -137,6 +137,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
 
     var showSkillDesc = function () {
         var $this = $(this);
+        var $td=$(this).parent();
         var skill = $(this).data('skill');
         var lv = $(this).data('lv');
         var baseSkill = $(this).data('baseskill');
@@ -157,14 +158,14 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
 
         $('body').append($div.hide());
 
-        var top = $this.position().top + $this.height() / 3;
-        var left = $this.position().left + $this.width();
+        var top = $this.position().top;
+        var left = $td.position().left + $td.width();
 
-        if ($this.position().top + $this.height() / 3 + $div.height() > $(window).height()) {
-            top = $(window).height() - $div.height();
+        if ($this.position().top  + $div.height() > $(window).height()) {
+            top = $(window).height() - $div.height() - 10;
         }
-        if ($this.position().left + $this.width() + $div.width() > $(window).width()) {
-            left = $this.position().left - $div.width();
+        if ($td.position().left + $td.width() + $div.width() + 10 > $(window).width()) {
+            left = $td.position().left - $div.width()-10;
         }
         $div.css({ top: top + 'px', left: left + 'px' }).show();
     };

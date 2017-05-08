@@ -50,25 +50,22 @@ body {
 }
 #main td .skillName{
     position: absolute;
-    background-color: rgba(192,192,192,0.6);
-    left: 0;
-    top: 0;
+    background-color: rgba(192,192,192,0.75);
+    left: 3px;
+    top: 3px;
 }
 #main td .currentLevel{
     position: absolute;
-    background-color: rgba(192,192,192,0.6);
-    right: 0;
-    bottom: 0;
+    background-color: rgba(192,192,192,0.75);
+    right: 3px;
+    bottom: 3px;
 }
 #main td .btn-container{
     white-space: nowrap;
-    padding: 3px 0;
+    padding: 5px 0;
+    width:70px;
 }
 #main td .btn{
-    margin-left:6px;
-}
-#main td .btn:first-of-type{
-    margin-left:0;
 }
 
 .notAvailable{
