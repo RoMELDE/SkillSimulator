@@ -102,7 +102,8 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
                 ;
         });
 
-        $('#main').append($table);
+        $('#main').append($table);        
+        renderCondition();
         refresh();
         if (savedata) {
             load(savedata);
@@ -284,6 +285,23 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             //    }
             else {
                 $tdnext.find('.skill-sub').visible();
+            }
+        });
+    };
+
+    var renderCondition = function () {
+        $('#main td').removeClass('has-connect');
+        $('.skillContainer').each(function (i, o) {
+            var baseSkill = $(o).data('baseskill');
+            var skillMould = $(o).data('skillmould');
+            var conditionSkillMouldId = Data.getConditionSkillMouldIdBySkillMouldId(baseSkill.Id);
+            if (conditionSkillMouldId) {
+                var $condition = $('.skillContainer[skill-mould-id=' + conditionSkillMouldId + ']').parent();
+                while($condition.next().is($(o).parent())==false)
+                {
+                    $condition.next().addClass('has-connect')
+                    $condition=$condition.next();
+                }
             }
         });
     };

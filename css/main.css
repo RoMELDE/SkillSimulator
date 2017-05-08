@@ -23,6 +23,20 @@ body {
 #main td{
     min-width: 60px;
 }
+#main td.has-connect{
+    position: relative;
+}
+#main td.has-connect:before {
+	background-color: #ddd;
+	content: "";
+	display: block;
+	height: 4px;
+	width: 100%;
+	position: absolute;
+	z-index: -1;
+	top: calc(50% - 2px);
+	left: 0px;
+}
 #main td:nth-of-type(12){
     border-right: 1px solid #777;
 }

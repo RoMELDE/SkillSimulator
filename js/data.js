@@ -73,13 +73,13 @@ define(['jquery'], function () {
         }
         var skills = [];
         _.each(skillIds, function (o) {
-            var skill = _.find(self.data.Skill, function (p) { return p.Id === o; });
+            var skill = _.find(data.Skill, function (p) { return p.Id === o; });
             if (skill) {
-                var skillDesc = _.find(self.data.SkillDesc, function (p) { return p.Id === skill.Desc.Id; });
+                var skillDesc = _.find(data.SkillDesc, function (p) { return p.Id === skill.Desc.Id; });
                 if (skillDesc) {
                     skill.Desc.Text = skillDesc.Desc;
                 }
-                //var skillMould = _.find(self.data.SkillMould, function (p) { return p.Id === o; });
+                //var skillMould = _.find(data.SkillMould, function (p) { return p.Id === o; });
                 //if (skillMould) {
                 //    skill.Mould = skillMould;
                 //}
@@ -92,9 +92,9 @@ define(['jquery'], function () {
 
     var getSkillById = function (id) {
         var self = this;
-        var skill = _.find(self.data.Skill, function (p) { return p.Id === id; });
+        var skill = _.find(data.Skill, function (p) { return p.Id === id; });
         if (skill) {
-            var skillDesc = _.find(self.data.SkillDesc, function (p) { return p.Id === skill.Desc.Id; });
+            var skillDesc = _.find(data.SkillDesc, function (p) { return p.Id === skill.Desc.Id; });
             if (skillDesc) {
                 skill.Desc.Text = skillDesc.Desc;
                 skill.Desc.Html = formatSkillText(skill.Desc);
@@ -105,9 +105,9 @@ define(['jquery'], function () {
 
     var getSkillByNextId = function (nextid) {
         var self = this;
-        var skill = _.find(self.data.Skill, function (p) { return p.NextId === nextid; });
+        var skill = _.find(data.Skill, function (p) { return p.NextId === nextid; });
         if (skill) {
-            var skillDesc = _.find(self.data.SkillDesc, function (p) { return p.Id === skill.Desc.Id; });
+            var skillDesc = _.find(data.SkillDesc, function (p) { return p.Id === skill.Desc.Id; });
             if (skillDesc) {
                 skill.Desc.Text = skillDesc.Desc;
                 skill.Desc.Html = formatSkillText(skill.Desc);
@@ -145,12 +145,38 @@ define(['jquery'], function () {
         }
         var skills = [];
         _.each(skillIds, function (o) {
-            var skillMould = _.find(self.data.SkillMould, function (p) { return p.Id === o; });
+            var skillMould = _.find(data.SkillMould, function (p) { return p.Id === o; });
             if (skillMould) {
                 skills.push(skillMould);
             }
         });
         return skills;
+    };
+
+    var getConditionSkillMouldIdBySkillMouldId = function (id) {
+        var self = this;
+        var parentSkill = getSkillById(id);
+        var conditionSkillId = 0;
+        while (parentSkill) {
+            if (parentSkill.Condition && parentSkill.Condition.Skillid) {
+                conditionSkillId = parentSkill.Condition.Skillid;
+                parentSkill = null;
+            }
+            else {
+                parentSkill = getSkillByNextId(id);
+            }
+        }
+        if (!conditionSkillId) {
+            return 0;
+        }
+        else {
+            parentSkill = getSkillById(conditionSkillId);
+            while (parentSkill) {
+                conditionSkillId = parentSkill.Id;
+                parentSkill = getSkillByNextId(conditionSkillId);
+            }
+            return conditionSkillId;
+        }
     };
 
     var formatSkillText = function (skillDesc) {
@@ -175,5 +201,6 @@ define(['jquery'], function () {
         getSkillByNextId: getSkillByNextId,
         getSkillByClassId: getSkillByClassId,
         getSkillMouldByClassId: getSkillMouldByClassId,
+        getConditionSkillMouldIdBySkillMouldId: getConditionSkillMouldIdBySkillMouldId,
     };
 });
