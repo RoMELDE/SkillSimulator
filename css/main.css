@@ -52,10 +52,23 @@ body {
     position: absolute;
     background-color: rgba(192,192,192,0.6);
     left: 0;
+    top: 0;
+}
+#main td .currentLevel{
+    position: absolute;
+    background-color: rgba(192,192,192,0.6);
+    right: 0;
     bottom: 0;
 }
+#main td .btn-container{
+    white-space: nowrap;
+    padding: 3px 0;
+}
 #main td .btn{
-    width:25px;
+    margin-left:6px;
+}
+#main td .btn:first-of-type{
+    margin-left:0;
 }
 
 .notAvailable{
@@ -82,11 +95,13 @@ body {
 .skill-desc{
     position: absolute;
     z-index: 100;
-    background-color: rgba(160,160,160,0.8);
-    width:300px;
+    background-color: rgba(160,160,160,0.9);
+    border-radius: 10px;
+    padding:5px;
+    width:400px;
 }
 .skill-desc .skill-desc-header{
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #ddd;
 }
 .skill-desc .skill-desc-detail{
     float: left;
@@ -96,5 +111,5 @@ body {
     width: 100%;
 }
 .skill-desc .skill-desc-detail:nth-of-type(2){    
-    border-left: 2px solid #ccc;
+    border-left: 2px solid #ddd;
 }

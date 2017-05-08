@@ -85,24 +85,28 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             var $name = $('<div>').addClass('skillName').text(skill.NameZh);
             $div.append($name);
 
+            var $lv = $('<div>').addClass('currentLevel').text("Lv.0");
+            $div.append($lv);
+
             var $tdnext = $td.next();
             $tdnext
-                .append($('<input class="btn btn-xs btn-block btn-success skill-add" type="button" value="+">').click(function () {
-                    addSkill.call($div);
-                }))
-                .append($('<input class="btn btn-xs btn-block btn-success skill-add" type="button" value="M">').click(function () {
-                    maxSkill.call($div);
-                }))
-                .append($('<input class="btn btn-xs btn-block btn-danger skill-sub" type="button" value="-">').click(function () {
-                    subSkill.call($div);
-                }))
-                //.append($('<input class="btn btn-xs btn-block btn-info skill-clear" type="button" value="C">').click(function () {
-                //    clearSkill.call($div);
-                //}))
-                ;
+                .append($("<div>").addClass('btn-container')
+                    .append($('<button class="btn btn-sm btn-success skill-add skill-add-1" type="button">').append("<span class='glyphicon glyphicon-plus'>").click(function () {
+                        addSkill.call($div);
+                    }))
+                    .append($('<button class="btn btn-sm btn-success skill-add skill-add-max" type="button">').append("<span class='glyphicon glyphicon-chevron-up'>").click(function () {
+                        maxSkill.call($div);
+                    })))
+                .append($("<div>").addClass('btn-container')
+                    .append($('<button class="btn btn-sm btn-danger skill-sub skill-sub-1" type="button">').append("<span class='glyphicon glyphicon-minus'>").click(function () {
+                        subSkill.call($div);
+                    }))
+                    .append($('<button class="btn btn-sm btn-danger skill-sub skill-sub-clear" type="button">').append("<span class='glyphicon glyphicon-trash'>").click(function () {
+                        clearSkill.call($div);
+                    })));
         });
 
-        $('#main').append($table);        
+        $('#main').append($table);
         renderCondition();
         refresh();
         if (savedata) {
@@ -113,6 +117,22 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             //a little delay to unveil for better unveil effect
             $('#main').find("img").unveil();
         }, 100);
+    };
+
+    var renderCondition = function () {
+        $('#main td').removeClass('has-connect');
+        $('.skillContainer').each(function (i, o) {
+            var baseSkill = $(o).data('baseskill');
+            var skillMould = $(o).data('skillmould');
+            var conditionSkillMouldId = Data.getConditionSkillMouldIdBySkillMouldId(baseSkill.Id);
+            if (conditionSkillMouldId) {
+                var $condition = $('.skillContainer[skill-mould-id=' + conditionSkillMouldId + ']').parent();
+                while ($condition.next().is($(o).parent()) == false) {
+                    $condition.next().addClass('has-connect')
+                    $condition = $condition.next();
+                }
+            }
+        });
     };
 
     var showSkillDesc = function () {
@@ -166,6 +186,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
         if (nextSkill) {
             $this.data('skill', nextSkill);
             $this.data('lv', $this.data('lv') + 1);
+            $this.find('.currentLevel').text("Lv." + $this.data('lv'));
             skillIdList.push(nextSkill.Id);
             joblv++;
             joblvList[nextSkill.Class] = (joblvList[nextSkill.Class] || 0) + 1;
@@ -175,14 +196,6 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             refresh();
         }
     };
-
-    var maxSkill = function () {
-        var $tdnext = $(this).parent().next();
-        while ($tdnext.find('.skill-add').isvisible()) {
-            $tdnext.find('.skill-add').click();
-        }
-    };
-
     var subSkill = function () {
         var $this = $(this);
 
@@ -197,6 +210,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
 
         $this.data('skill', prevSkill);
         $this.data('lv', $this.data('lv') - 1);
+        $this.find('.currentLevel').text("Lv." + $this.data('lv'));
         skillIdList = _.without(skillIdList, skill.Id);
         joblv--;
         joblvList[skill.Class] = (joblvList[skill.Class] || 0) - 1;
@@ -204,6 +218,18 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             requireSkillIdList = _.without(requireSkillIdList, skill.Condition.Skillid);
         }
         refresh();
+    };
+    var maxSkill = function () {
+        var $tdnext = $(this).parent().next();
+        while ($tdnext.find('.skill-add-1').isvisible()) {
+            $tdnext.find('.skill-add-1').click();
+        }
+    };
+    var clearSkill = function () {
+        var $tdnext = $(this).parent().next();
+        while ($tdnext.find('.skill-sub-1').isvisible()) {
+            $tdnext.find('.skill-sub-1').click();
+        }
     };
 
     $.fn.visible = function () {
@@ -289,23 +315,6 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
         });
     };
 
-    var renderCondition = function () {
-        $('#main td').removeClass('has-connect');
-        $('.skillContainer').each(function (i, o) {
-            var baseSkill = $(o).data('baseskill');
-            var skillMould = $(o).data('skillmould');
-            var conditionSkillMouldId = Data.getConditionSkillMouldIdBySkillMouldId(baseSkill.Id);
-            if (conditionSkillMouldId) {
-                var $condition = $('.skillContainer[skill-mould-id=' + conditionSkillMouldId + ']').parent();
-                while($condition.next().is($(o).parent())==false)
-                {
-                    $condition.next().addClass('has-connect')
-                    $condition=$condition.next();
-                }
-            }
-        });
-    };
-
     var refresh = function () {
         updateJobText();
         save();
@@ -332,9 +341,9 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             _.each(skillList, function (o, i) {
                 var $div = $('.skillContainer[skill-mould-id=' + o.s + ']');
                 var $tdnext = $div.parent().next();
-                if ($tdnext.find('.skill-add').isvisible()) {
+                if ($tdnext.find('.skill-add-1').isvisible()) {
                     for (var i = 0; i < o.lv; i++) {
-                        $tdnext.find('.skill-add').click();
+                        $tdnext.find('.skill-add-1').click();
                     }
                     skillList = _.without(skillList, o);
                 }
