@@ -36,6 +36,12 @@
                     SP消耗：
                     <%= skill.SkillCost %>
                 </div>
+                <% if(skill.SkillCostItemId){ %>
+                    <div>
+                        特殊消耗：
+                        <%= skill.SkillCostItemName %>×<%= skill.SkillCostItemNum %>
+                    </div>
+                    <% } %>
             </div>
             <% } %>
                 <% if(nextSkill){ %>
@@ -60,6 +66,12 @@
                             SP消耗：
                             <%= nextSkill.SkillCost %>
                         </div>
+                        <% if(nextSkill.SkillCostItemId){ %>
+                            <div>
+                                特殊消耗：
+                                <%= nextSkill.SkillCostItemName %>×<%= nextSkill.SkillCostItemNum %>
+                            </div>
+                            <% } %>
                     </div>
                     <% } %>
     </div>
