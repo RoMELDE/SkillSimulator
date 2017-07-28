@@ -291,14 +291,29 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
                 return;
             }
 
-            var currentClass = Data.getClassById(skill.Class);
-            var parentClass = Data.getParentClassById(skill.Class);
-            var currentClassMaxLv = currentClass.MaxJobLevel - parentClass.MaxJobLevel;
+            var maxClassId = 1;
+            _.each(joblvList, function (o, i) {
+                if (o > 0) {
+                    maxClassId = i;
+                }
+            });
+            var currentParentClass = Data.getParentClassById(maxClassId);
+            var currentClass = currentParentClass;
+            var parentClass = Data.getParentClassById(currentClass.Id);
+            var jobLv = 0, maxLv = 0;
+            while (parentClass) {
+                maxLv += currentClass.MaxJobLevel - parentClass.MaxJobLevel;
+                jobLv += joblvList[currentClass.Id];
+                currentClass = parentClass;
+                parentClass = Data.getParentClassById(parentClass.Id);
+            }
+
+            var currentSkillClass = Data.getClassById(skill.Class);
 
             if (_.contains(requireSkillIdList, skill.Id)) {
                 $tdnext.find('.skill-sub').invisible();
             }
-            else if (joblvList[skill.Class] === currentClassMaxLv && _.any(currentClass.AdvanceClass, function (o) { return joblvList[o] > 0; })) {
+            else if (maxLv > 0 && jobLv === maxLv && _.any(currentSkillClass.AdvanceClass, function (o) { return joblvList[o] > 0; })) {
                 $tdnext.find('.skill-sub').invisible();
             }
             //    else if (!nextSkill.Condition) {
