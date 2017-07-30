@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZString', 'bitset', 'text!../template/skillDesc.html', 'bootstrap', 'bootstrap-select', 'jquery.unveil'], function ($, _, Backbone, Data, Ui, noUiSlider, LZString, BitSet, skillDescTemplate) {
+define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZString', 'bitset', 'text!../template/skillDesc.html', 'bootstrap', 'bootstrap-select', 'jquery.unveil', 'dom-to-image'], function ($, _, Backbone, Data, Ui, noUiSlider, LZString, BitSet, skillDescTemplate) {
     var activeMenu = "";
     var joblv = 10;
     var joblvList = [];
@@ -6,6 +6,23 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
     var requireSkillIdList = [];
     var classId = 0;
 
+    $('#btnSaveImage').click(function () {
+        var w = window.open('about:blank;', '_blank');
+        $(w.document.body).append("生成中……");
+        $('#main table').addClass('hide-button');
+        domtoimage.toPng($('#main table')[0], { style: 'height:450px', bgcolor: '#fff' })
+            .then(function (dataUrl) {
+                $(w.document.body).empty();
+                $(w.document.body).append($('<textarea style="width:100%;height:100px;">').val(window.location));
+                $(w.document.body).append($('<img>').attr('src', dataUrl));
+            })
+            .catch(function (error) {
+                console.error('生成图片异常', error);
+            })
+            .then(function () {
+                $('#main table').removeClass('hide-button');
+            });
+    });
     var initUiLanguage = function () {
         $('[data-lang]').each(function () {
             var $this = $(this);
@@ -120,7 +137,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
     };
 
     var renderCondition = function () {
-        $('#main td').removeClass('has-connect');
+        $('#main td .has-connect').remove();
         $('.skillContainer').each(function (i, o) {
             var baseSkill = $(o).data('baseskill');
             var skillMould = $(o).data('skillmould');
@@ -128,7 +145,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             if (conditionSkillMouldId) {
                 var $condition = $('.skillContainer[skill-mould-id=' + conditionSkillMouldId + ']').parent();
                 while ($condition.next().is($(o).parent()) == false) {
-                    $condition.next().addClass('has-connect')
+                    $condition.next().append('<div class="has-connect">');
                     $condition = $condition.next();
                 }
             }

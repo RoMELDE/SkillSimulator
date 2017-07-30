@@ -17,55 +17,52 @@ body {
     height: 100%;
     padding: 20px 0;
 }
-#main table{
+table{
     height: 100%;
 }
-#main td{
-    min-width: 60px;
-}
-#main td.has-connect{
+td{
+    min-width: 45px;
     position: relative;
 }
-#main td.has-connect:before {
+td .has-connect {
 	background-color: #ddd;
-	content: "";
 	display: block;
 	height: 4px;
 	width: 100%;
 	position: absolute;
-	z-index: -1;
 	top: calc(50% - 2px);
 	left: 0px;
 }
-#main td:nth-of-type(12){
+td:nth-of-type(12){
     border-right: 1px solid #777;
 }
-#main td:nth-of-type(24){
+td:nth-of-type(24){
     border-right: 1px solid #777;
 }
-#main td .skillContainer{
+td .skillContainer{
     width: 90px;
     height: 90px;
     position: relative;
 }
-#main td .skillName{
+td .skillName{
     position: absolute;
     background-color: rgba(192,192,192,0.75);
     left: 3px;
     top: 3px;
 }
-#main td .currentLevel{
+td .currentLevel{
     position: absolute;
     background-color: rgba(192,192,192,0.75);
     right: 3px;
     bottom: 3px;
 }
-#main td .btn-container{
+td .btn-container{
     white-space: nowrap;
     padding: 5px 0;
     width:70px;
 }
-#main td .btn{
+.hide-button .btn-container{
+    display: none;
 }
 
 .notAvailable{
