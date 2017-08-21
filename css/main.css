@@ -1,4 +1,4 @@
-html{
+html {
     height: 100%;
 }
 
@@ -12,60 +12,73 @@ body {
     cursor: pointer;
 }
 
-#main{
-    overflow-x :auto;
+#main {
+    overflow-x: auto;
     height: 100%;
     padding: 20px 0;
 }
-table{
+
+div.alert + #main {
+    height: calc(100% - 75px);
+}
+
+table {
     height: 100%;
 }
-td{
+
+td {
     min-width: 45px;
-    position: relative;
 }
+
 td .has-connect {
-	background-color: #ddd;
-	display: block;
-	height: 4px;
-	width: 100%;
-	position: absolute;
-	top: calc(50% - 2px);
-	left: 0px;
+    background-color: #ddd;
+    display: block;
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 0px;
 }
-td:nth-of-type(12){
+
+td:nth-of-type(12) {
     border-right: 1px solid #777;
 }
-td:nth-of-type(24){
+
+td:nth-of-type(24) {
     border-right: 1px solid #777;
 }
-td .skillContainer{
+
+td .skillContainer {
     width: 90px;
     height: 90px;
     position: relative;
 }
-td .skillName{
+
+td .skillName {
     position: absolute;
-    background-color: rgba(192,192,192,0.75);
+    background-color: rgba(192, 192, 192, 0.75);
     left: 3px;
     top: 3px;
 }
-td .currentLevel{
+
+td .currentLevel {
     position: absolute;
-    background-color: rgba(192,192,192,0.75);
+    background-color: rgba(192, 192, 192, 0.75);
     right: 3px;
     bottom: 3px;
 }
-td .btn-container{
+
+td .btn-container {
     white-space: nowrap;
     padding: 5px 0;
-    width:70px;
+    width: 70px;
 }
-.hide-button .btn-container{
+
+.hide-button .btn-container {
     display: none;
 }
 
-.notAvailable{
+.notAvailable {
     filter: grayscale(100%);
 }
 
@@ -86,24 +99,28 @@ td .btn-container{
     background: #337ab7;
 }
 
-.skill-desc{
+.skill-desc {
     position: absolute;
     z-index: 100;
-    background-color: rgba(160,160,160,0.9);
+    background-color: rgba(160, 160, 160, 0.9);
     border-radius: 10px;
-    padding:5px;
-    width:400px;
+    padding: 5px;
+    width: 400px;
 }
-.skill-desc .skill-desc-header{
+
+.skill-desc .skill-desc-header {
     border-bottom: 2px solid #ddd;
 }
-.skill-desc .skill-desc-detail{
+
+.skill-desc .skill-desc-detail {
     float: left;
     width: 50%;
 }
-.skill-desc .skill-desc-detail:only-of-type{    
+
+.skill-desc .skill-desc-detail:only-of-type {
     width: 100%;
 }
-.skill-desc .skill-desc-detail:nth-of-type(2){    
+
+.skill-desc .skill-desc-detail:nth-of-type(2) {
     border-left: 2px solid #ddd;
 }
