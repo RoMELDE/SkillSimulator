@@ -25,10 +25,14 @@ define(['jquery', 'underscore'], function ($, _) {
     data["category"] = { "ja-JP": "", "zh-TW": "分類", "en-US": "Category", "zh-CN": "分类" };
     data["about"] = { "ja-JP": "", "zh-TW": "關於", "en-US": "About", "zh-CN": "关于" };
     data["info"] = { "ja-JP": "お知らせ", "zh-TW": "通知", "en-US": "Notices", "zh-CN": "游戏公告" };
+    data["class"] = { "ja-JP": "", "zh-TW": "", "en-US": "Class", "zh-CN": "职业" };
+
+    data["currentversion"] = { "ja-JP": "", "zh-TW": "當前版本：", "en-US": "Current Ver.:", "zh-CN": "当前版本：" };
+    data["officalsite"] = { "ja-JP": "", "zh-TW": "官網", "en-US": "Offical Site", "zh-CN": "官网" };
+    data["donate"] = { "ja-JP": "", "zh-TW": "送版主女裝", "en-US": "NGA RO", "zh-CN": "送版主女装" };
+
     data["ui"] = { "ja-JP": "", "zh-TW": "界面語言", "en-US": "UI", "zh-CN": "界面语言" };
     data["data"] = { "ja-JP": "", "zh-TW": "資料語言", "en-US": "Data", "zh-CN": "数据语言" };
-    data["class"] = { "ja-JP": "", "zh-TW": "", "en-US": "Class", "zh-CN": "职业" };
-    data["officalsite"] = { "ja-JP": "", "zh-TW": "", "en-US": "Offical Site", "zh-CN": "官网" };
 
 
     var getText = function (key) {
