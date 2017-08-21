@@ -145,7 +145,7 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             if (conditionSkillMouldId) {
                 var $condition = $('.skillContainer[skill-mould-id=' + conditionSkillMouldId + ']').parent();
                 while ($condition.next().is($(o).parent()) == false) {
-                    $condition.next().append('<div class="has-connect">');
+                    $condition.next().append('<div class="has-connect">').css('position', 'relative');
                     $condition = $condition.next();
                 }
             }
@@ -174,7 +174,6 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
         }));
 
         $('body').append($div.hide());
-
         var top = $this.position().top;
         var left = $td.position().left + $td.width();
 
