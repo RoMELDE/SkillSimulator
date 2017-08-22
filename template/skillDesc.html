@@ -24,24 +24,49 @@
                     施法距离：
                     <%= skill.LaunchRange %>m
                 </div>
-                <div>
-                    技能冷却：
-                    <%= skill.CD %>秒
-                </div>
-                <div>
-                    技能延迟：
-                    <%= skill.DelayCD %>秒
-                </div>
-                <div>
-                    SP消耗：
-                    <%= skill.SkillCost %>
-                </div>
-                <% if(skill.SkillCostItemId){ %>
+                <% if(skill.LeadType){ %>
                     <div>
-                        特殊消耗：
-                        <%= skill.SkillCostItemName %>×<%= skill.SkillCostItemNum %>
+                        吟唱时间：
+                        <% switch(skill.LeadType.type) {
+case 1: { %>
+                            <%= skill.LeadType.ReadyTime %>秒|类型1
+                                <% break;}
+case 2: { %>
+                                    固定
+                                    <%= skill.LeadType.CCT %>秒+可变
+                                        <%= skill.LeadType.FCT %>秒|类型2
+                                            <% break;}
+case 3: { %>
+                                                持续
+                                                <%= skill.LeadType.duration %>秒|类型3
+                                                    <% break;}
+case 4: { %>
+                                                        持续
+                                                        <%= skill.LeadType.DCT %>秒|类型4
+                                                            <% break;}
+                        }
+                        %>
                     </div>
                     <% } %>
+                        <div>
+                            技能冷却：
+                            <%= skill.CD %>秒
+                        </div>
+                        <div>
+                            技能延迟：
+                            <%= skill.DelayCD %>秒
+                        </div>
+                        <div>
+                            SP消耗：
+                            <%= skill.SkillCost %>
+                        </div>
+                        <% if(skill.SkillCostItemId){ %>
+                            <div>
+                                特殊消耗：
+                                <%= skill.SkillCostItemName %>×
+                                    <%= skill.SkillCostItemNum %>
+                            </div>
+                            <% } %>
             </div>
             <% } %>
                 <% if(nextSkill){ %>
@@ -54,24 +79,49 @@
                             施法距离：
                             <%= nextSkill.LaunchRange %>m
                         </div>
-                        <div>
-                            技能冷却：
-                            <%= nextSkill.CD %>秒
-                        </div>
-                        <div>
-                            技能延迟：
-                            <%= nextSkill.DelayCD %>秒
-                        </div>
-                        <div>
-                            SP消耗：
-                            <%= nextSkill.SkillCost %>
-                        </div>
-                        <% if(nextSkill.SkillCostItemId){ %>
+                        <% if(nextSkill.LeadType){ %>
                             <div>
-                                特殊消耗：
-                                <%= nextSkill.SkillCostItemName %>×<%= nextSkill.SkillCostItemNum %>
+                                吟唱时间：
+                                <% switch(nextSkill.LeadType.type) {
+        case 1: { %>
+                                    <%= nextSkill.LeadType.ReadyTime %>秒|类型1
+                                        <% break;}
+        case 2: { %>
+                                            固定
+                                            <%= nextSkill.LeadType.CCT %>秒+可变
+                                                <%= nextSkill.LeadType.FCT %>秒|类型2
+                                                    <% break;}
+        case 3: { %>
+                                                        持续
+                                                        <%= nextSkill.LeadType.duration %>秒|类型3
+                                                            <% break;}
+        case 4: { %>
+                                                                持续
+                                                                <%= nextSkill.LeadType.DCT %>秒|类型4
+                                                                    <% break;}
+                                }
+                                %>
                             </div>
                             <% } %>
+                                <div>
+                                    技能冷却：
+                                    <%= nextSkill.CD %>秒
+                                </div>
+                                <div>
+                                    技能延迟：
+                                    <%= nextSkill.DelayCD %>秒
+                                </div>
+                                <div>
+                                    SP消耗：
+                                    <%= nextSkill.SkillCost %>
+                                </div>
+                                <% if(nextSkill.SkillCostItemId){ %>
+                                    <div>
+                                        特殊消耗：
+                                        <%= nextSkill.SkillCostItemName %>×
+                                            <%= nextSkill.SkillCostItemNum %>
+                                    </div>
+                                    <% } %>
                     </div>
                     <% } %>
     </div>
