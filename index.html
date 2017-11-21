@@ -72,7 +72,7 @@
                     </form>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <p class="navbar-text"><span data-lang="currentversion">当前版本：</span><span id="version">143664</span></p>
+                    <p class="navbar-text"><span data-lang="currentversion">当前版本：</span><span id="version">145590</span></p>
                     <li><a href="http://ro.xd.com/" target="_blank" data-lang="officalsite">OfficalSite</a></li>
                     <li><a href="http://nga.178.com/thread.php?fid=555/" target="_blank" data-lang="donate">Donate</a></li>
                     <li class="dropdown" style="display:none">
@@ -113,22 +113,15 @@
     </div>
     <script src="js/libs/nprogress.js"></script>
     <script src="js/libs/require.js" data-main="js/main" defer async="true"></script>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-97666474-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
 
-        ga('create', 'UA-97666474-1', 'auto');
-        ga('send', 'pageview');
-    </script>
+	  gtag('config', 'UA-97666474-1');
+	</script>
 </body>
 
 </html>
