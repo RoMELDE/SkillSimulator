@@ -20,7 +20,7 @@ require.config({
         "nouislider": "libs/nouislider.min",
         "bootstrap": "libs/bootstrap.min",
         "bootstrap-select": "libs/bootstrap-select.min",
-        "dom-to-image":"libs/dom-to-image.min"
+        "dom-to-image": "libs/dom-to-image.min"
     }
 });
 NProgress.start();
@@ -28,15 +28,16 @@ require(['jquery', 'underscore', 'data', 'ui', 'view', 'router'], function ($, _
     $(function () {
         NProgress.set(0.33);
         View.initUiLanguage();
-        $.when(Data.init("Skill"), Data.init("SkillDesc"), Data.init("SkillMould"))
+        $.when(Data.init("Class"))
             .then(function () {
                 NProgress.set(0.66);
-                $.when(Data.init("Class"))
+                $.when(Data.init("Skill"), Data.init("SkillDesc"), Data.init("SkillMould"))
                     .done(function () {
                         NProgress.set(0.9);
-                        localStorage.setItem("lastUpdate", JSON.stringify(new Date()))
+                        Data.saveLastUpdate();
                         NProgress.inc();
                         Router.init();
+                        View.init();
                         NProgress.done();
 
                         //彩蛋

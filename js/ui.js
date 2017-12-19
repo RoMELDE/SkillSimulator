@@ -27,6 +27,8 @@ define(['jquery', 'underscore'], function ($, _) {
     data["type-4"] = { "ja-JP": "", "zh-TW": "弓箭手系", "en-US": "Archer", "zh-CN": "弓箭手系" };
     data["type-5"] = { "ja-JP": "", "zh-TW": "服事系", "en-US": "Acolyte", "zh-CN": "服事系" };
     data["type-6"] = { "ja-JP": "", "zh-TW": "商人系", "en-US": "Merchant", "zh-CN": "商人系" };
+
+    data["being"] = { "ja-JP": "", "zh-TW": "生命體", "en-US": "Homunculus", "zh-CN": "生命体" };
     
     data["list"] = { "ja-JP": "図鑑", "zh-TW": "圖鑑", "en-US": "Encyclopedia", "zh-CN": "图鉴" };
     data["search"] = { "ja-JP": "検索", "zh-TW": "搜索", "en-US": "Search", "zh-CN": "搜索" };

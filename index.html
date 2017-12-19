@@ -55,6 +55,7 @@
                             <li><a href="#class/23" data-class-id="23">超魔导士</a></li>
                             <li class="dropdown-header" data-lang="type-3">盗贼系</li>
                             <li><a href="#class/33" data-class-id="33">十字刺客</a></li>
+                            <li><a href="#class/93" data-class-id="93">神行</a></li>
                             <li class="dropdown-header" data-lang="type-4">弓箭手系</li>
                             <li><a href="#class/43" data-class-id="43">神射手</a></li>
                             <li class="dropdown-header" data-lang="type-5">服事系</li>
@@ -62,6 +63,16 @@
                             <li><a href="#class/123" data-class-id="123">武术宗师</a></li>
                             <li class="dropdown-header" data-lang="type-6">商人系</li>
                             <li><a href="#class/63" data-class-id="63">神工匠</a></li>
+                            <li><a href="#class/133" data-class-id="133">创造者</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span data-lang="being">being</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" id="beingList">
+                            <!--生命体列表-->
                         </ul>
                     </li>
                     <p class="navbar-text">当前Job：<span id="jobText">0</span></p>
@@ -72,9 +83,9 @@
                     </form>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <p class="navbar-text"><span data-lang="currentversion">当前版本：</span><span id="version">146022</span></p>
+                    <p class="navbar-text"><span data-lang="currentversion">当前版本：</span><span id="version"></span></p>
                     <li><a href="http://ro.xd.com/" target="_blank" data-lang="officalsite">OfficalSite</a></li>
-                    <li><a href="http://nga.178.com/thread.php?fid=555/" target="_blank" data-lang="donate">Donate</a></li>
+                    <li><a href="http://nga.178.com/thread.php?fid=555" target="_blank" data-lang="donate">Donate</a></li>
                     <li class="dropdown" style="display:none">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class='glyphicon glyphicon-globe'></span>
@@ -108,7 +119,7 @@
             <!-- /.navbar-collapse -->
         </div>
     </nav>
-    <!--<div class="alert alert-danger" role="alert">警告：正在使用测试服数据。</div>-->
+    <div class="alert alert-danger" role="alert" style="display:none">警告：正在使用测试服数据。</div>
     <div id="main">
     </div>
     <script src="js/libs/nprogress.js"></script>

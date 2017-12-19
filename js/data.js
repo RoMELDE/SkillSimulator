@@ -1,6 +1,9 @@
 define(['jquery'], function () {
     var data = {};
 
+    var version = 153836;
+    var isTest = false;
+
     var init = function (type) {
         var dtd = $.Deferred();
         if (!type) {
@@ -34,10 +37,16 @@ define(['jquery'], function () {
         });
     };
 
+    var isLatest;
+    var lastUpdate;
     var isDataTooOld = function () {
         var dtd = $.Deferred();
+        if (isLatest !== undefined) {
+            dtd.resolve(isLatest == false);
+            return dtd.promise();
+        }
         var key = "lastUpdate";
-        var lastUpdate = localStorage.getItem(key);
+        lastUpdate = localStorage.getItem(key);
         if (!lastUpdate) {
             dtd.resolve(true);
             return dtd.promise();
@@ -48,10 +57,15 @@ define(['jquery'], function () {
             cache: false,
             dataType: "json"
         }).then(function (data) {
-            var local = JSON.parse(lastUpdate);
+            var local = lastUpdate;
             var remote = data;
-            return new Date(local).getTime() < new Date(remote).getTime();
+            isLatest = new Date(local).getTime() >= new Date(remote).getTime();
+            lastUpdate = remote;
+            return isLatest == false;
         });
+    };
+    var saveLastUpdate = function () {
+        localStorage.setItem("lastUpdate", lastUpdate)
     };
 
     var getClassById = function (id) {
@@ -122,7 +136,7 @@ define(['jquery'], function () {
         var classes = [];
         var currentClass = getClassById(id);
         var parentClass = currentClass;
-        while (parentClass.Id != 1) {
+        while (parentClass && parentClass.Id != 1) {
             classes.push(parentClass);
             parentClass = getParentClassById(parentClass.Id);
         }
@@ -193,7 +207,8 @@ define(['jquery'], function () {
 
     return {
         data: data,
-        init: init,
+        getVersion: function () { return version; },
+        isTest: function () { return isTest; },
         isDataTooOld: isDataTooOld,
         getClassById: getClassById,
         getParentClassById: getParentClassById,
@@ -202,5 +217,8 @@ define(['jquery'], function () {
         getSkillByClassId: getSkillByClassId,
         getSkillMouldByClassId: getSkillMouldByClassId,
         getConditionSkillMouldIdBySkillMouldId: getConditionSkillMouldIdBySkillMouldId,
+        init: init,
+        isDataTooOld: isDataTooOld,
+        saveLastUpdate: saveLastUpdate,
     };
 });
