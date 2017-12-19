@@ -45,7 +45,7 @@ define(['jquery'], function () {
             dtd.resolve(isLatest == false);
             return dtd.promise();
         }
-        var key = "lastUpdate";
+        var key = "lastUpdate_SkillSimulator";
         lastUpdate = localStorage.getItem(key);
         if (!lastUpdate) {
             dtd.resolve(true);
