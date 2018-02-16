@@ -65,7 +65,7 @@ define(['jquery'], function () {
         });
     };
     var saveLastUpdate = function () {
-        localStorage.setItem("lastUpdate", lastUpdate)
+        localStorage.setItem("lastUpdate_SkillSimulator", lastUpdate)
     };
 
     var getClassById = function (id) {
