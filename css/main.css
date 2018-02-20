@@ -68,6 +68,10 @@ td .currentLevel {
     bottom: 3px;
 }
 
+td .currentLevel.hasPeakLevel {
+    background-color: rgba(255, 255, 0, 0.75);
+}
+
 td .btn-container {
     white-space: nowrap;
     padding: 5px 0;

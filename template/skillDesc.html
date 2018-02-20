@@ -7,6 +7,10 @@
             <div>
                 Lv.
                 <%= lv %>
+                    <% if(skill&&skill.PeakLevel){ %>
+                        (PeakLv.
+                        <%= skill.PeakLevel %>)
+                            <% } %>
             </div>
             <div>
                 <%= baseSkill.SkillType %>
