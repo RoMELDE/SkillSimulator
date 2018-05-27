@@ -48,6 +48,10 @@ td:nth-of-type(24) {
     border-right: 1px solid #777;
 }
 
+td:nth-of-type(37) {
+    border-right: 1px solid #777;
+}
+
 td .skillContainer {
     width: 90px;
     height: 90px;
