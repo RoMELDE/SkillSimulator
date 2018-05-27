@@ -29,7 +29,13 @@ define(['jquery'], function () {
                     dataType: "json"
                 })
                     .done(function (jsondata) {
-                        localStorage[key] = JSON.stringify(jsondata);
+                        try {
+                            localStorage[key] = JSON.stringify(jsondata);
+                        }
+                        catch{
+                            localStorage.clear();
+                            location.reload(true);
+                        }
                         console.log("Get data from web. ", key);
                         data[type] = jsondata;
                     });
@@ -57,8 +63,7 @@ define(['jquery'], function () {
             var remote = data;
             isLatest = new Date(local).getTime() >= new Date(remote).getTime();
             lastUpdate = remote;
-            if(!local)
-            {
+            if (!local) {
                 return true;
             }
             return isLatest == false;
