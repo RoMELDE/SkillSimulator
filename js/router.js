@@ -9,7 +9,7 @@ define(['jquery', 'underscore', 'backbone', 'ui', 'view'], function ($, _, Backb
                 '*path': 'defaultRoute'
             },
             defaultRoute: function () {
-                app_router.navigate("class/13", { trigger: true });
+                app_router.navigate("class/14", { trigger: true });
             }
         });
         // Initiate the router
