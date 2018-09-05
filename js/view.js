@@ -64,12 +64,12 @@ define(['jquery', 'underscore', 'backbone', 'data', 'ui', 'nouislider', 'LZStrin
             }
         });
         $('#version').text(Data.getVersion());
-        if (Data.isTest()) {
-            $('.alert').show();
-        }
-        else{
-            $('.alert').remove();
-        }
+        //if (Data.isTest()) {
+        //    $('.alert').show();
+        //}
+        //else{
+        //    $('.alert').remove();
+        //}
     };
     var render = function (id, savedata) {
         var self = this;
